@@ -15,6 +15,9 @@ CMD*/
 // we need this for group chats restriction
 function changeAccess(doGrant) {
   Api.restrictChatMember({
+    // it is BB Chat ID
+    // change it to your chat id
+    chat_id: '@chatbotsbusiness',
     user_id: user.telegramid,
     permissions: {
       can_send_messages: doGrant,

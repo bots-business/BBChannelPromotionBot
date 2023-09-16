@@ -3,7 +3,7 @@
   help: 
   need_reply: 
   auto_retry_time: 
-  folder: 
+  folder: 👣 Joining
 
   <<ANSWER
 
@@ -23,7 +23,8 @@ const userLink = Libs.commonLib.getLinkFor(user);
 
 let alertText = "Dear " + userLink + "," +
   "\n🎃 You are now prohibited from writing." +
-  "\n\n Please *join our channels* for full access: " + channels
+  "\n\nPlease *join our channels* for full access: " + channels +
+  "\n\n⏳ _This message will be deleted\nafter 15 minutes._"
 
 Api.sendMessage({
   text: alertText,
@@ -32,7 +33,8 @@ Api.sendMessage({
       { text: "Joined", callback_data: "/checkJoining " + user.id }
     ]
   ]},
-  parse_mode: "Markdown"
+  parse_mode: "Markdown",
+  on_result: "removeMsgAfter 15"
 })
 
 
