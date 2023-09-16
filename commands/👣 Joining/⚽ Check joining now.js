@@ -1,46 +1,25 @@
 /*CMD
-  command: /checkJoining
+  command: ⚽ Check joining now
   help: 
   need_reply: 
   auto_retry_time: 
-  folder: 
+  folder: 👣 Joining
   answer: 
   keyboard: 
   aliases: 
 CMD*/
 
-if(!user){ return }
-
-// if another user press button
-if(String(user.id)!=params){
-  let alertText = "This button is not for you 😜" 
-  showAlert(alertText);
-  return  // we stop execution here
-}
-
-function showAlert(text, show_alert){
-  Api.answerCallbackQuery({
-    text: text,
-    callback_query_id: request.id,
-    show_alert: show_alert // false - for alert on top
-  })
-}
 
 function onCanCheck(time){
   // check joining without delay
   Libs.MembershipChecker.check();
-
-  showAlert("Cheking your membership...");
-  return true; // if false - cooldown is not restarted
+  Bot.sendMessage("Cheking your membership...");
 }
 
 function onWaiting(waitTime){
   let alertText = "Please wait: " + waitTime + " secs for next checking" + 
     "\n\nJoin our channels for full access now!";
-  showAlert(
-    alertText,
-    true  // show alert on top
-  );
+  Bot.sendMessage(alertText);
 }
 
 // we use colldow lib
